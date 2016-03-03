@@ -1,35 +1,81 @@
 {
-  "requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return"],
-  "disallowQuotedKeysInObjects": "allButReserved",
-  "requireMultipleVarDecl": true,
-  "requireSpacesInsideObjectBrackets": "all",
-  "disallowSpaceAfterObjectKeys": true,
-  "disallowSpacesInsideArrayBrackets": true,
-  "requireRightStickedOperators": ["!"],
-  "disallowLeftStickedOperators": ["?", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<="],
-  "disallowRightStickedOperators": ["?", "/", "*", ":", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<="],
-  "requireSpaceBeforeBinaryOperators": ["+"],
-  "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
-  "disallowKeywordsOnNewLine": ["else"],
-  "validateJSDoc": {
-    "checkParamNames": true,
-    "checkRedundantParams": true,
-    "requireParamTypes": true
-  },
-  "requireSpacesInAnonymousFunctionExpression": {
-    "beforeOpeningCurlyBrace": true
-  },
-  "requireSpacesInNamedFunctionExpression": {
-    "beforeOpeningCurlyBrace": true
-  },
-  "disallowSpacesInFunctionExpression": {
-    "beforeOpeningRoundBrace": true
-  },
-  "disallowMixedSpacesAndTabs": true,
-  "excludeFiles": [
-    "common.blocks/**/*.deps.js",
-    "common.blocks/**/*.test.js",
-    "common.blocks/i-model/__utils/i-model__utils.js",
-    "common.blocks/i-model/__server-utils/i-model__server-utils.js"
-  ]
+    "excludeFiles": [
+        ".enb/**",
+        ".githooks/**",
+        "libs/**",
+        "node_modules/**",
+        "desktop.bundles/**"
+    ],
+    "fileExtensions": [
+        ".js"
+    ],
+    "requireSpaceAfterKeywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "switch",
+        "return",
+        "try",
+        "catch"
+    ],
+    "requireSpaceBeforeKeywords": [
+        "else",
+        "while",
+        "catch"
+    ],
+    "disallowKeywords": [
+        "with"
+    ],
+    "disallowKeywordsOnNewLine": [
+        "else",
+        "catch"
+    ],
+    "requireOperatorBeforeLineBreak": true,
+    "disallowOperatorBeforeLineBreak": [
+        "."
+    ],
+    "requireSpaceBeforeBinaryOperators": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "disallowSpaceBeforeBinaryOperators": [
+        ","
+    ],
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+    "disallowSpaceBeforePostfixUnaryOperators": true,
+    "requireSpacesInsideObjectBrackets": "all",
+    "disallowSpaceAfterObjectKeys": true,
+    "requireSpaceBeforeObjectValues": true,
+    "disallowSpacesInsideArrayBrackets": true,
+    "disallowSpacesInCallExpression": true,
+    "requireSpacesInFunctionDeclaration": {
+        "beforeOpeningCurlyBrace": true
+    },
+    "disallowSpacesInFunctionDeclaration": {
+        "beforeOpeningRoundBrace": true
+    },
+    "requireSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningCurlyBrace": true
+    },
+    "disallowSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
+    "requireBlocksOnNewline": 1,
+    "disallowSpacesInsideParentheses": true,
+    "requireCommaBeforeLineBreak": true,
+    "disallowMultipleLineStrings": true,
+    "disallowMultipleLineBreaks": true,
+    "validateLineBreaks": "LF",
+    "disallowMixedSpacesAndTabs": true,
+    "requireCapitalizedConstructors": true,
+    "disallowYodaConditions": true,
+    "requireSpaceAfterLineComment": true,
+    "disallowNewlineBeforeBlockStatements": true,
+    "requireSpacesInConditionalExpression": true,
+    "requireLineFeedAtFileEnd": true,
+    "disallowTrailingWhitespace": true,
+    "requireSpaceBeforeBlockStatements": true,
+    "safeContextKeyword": [
+        "_this"
+    ]
 }

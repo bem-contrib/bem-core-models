@@ -1,1 +1,3 @@
-common.blocks/**/*.*test.js
+*.specs
+dist
+common.blocks/**/*.*spec.js

@@ -1,0 +1,6 @@
+({
+    mustDeps: [
+        'lodash',
+        { elem: 'core' }
+    ]
+});

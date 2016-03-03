@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - "0.12"
+
+env:
+  global:
+    - GH_REF: github.com/birhoff/bem-core-models.git
+    - ISTANBUL_COVERAGE: yes
+
+# sudo=false to run builds inside container infrastructure
+# see https://github.com/bem/bem-components/issues/1528
+sudo: false
+
+after_success:
+  - npm install coveralls istanbul
+  - node_modules/.bin/istanbul report lcovonly
+  - cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js && echo "Coverage data was sent to coveralls!"

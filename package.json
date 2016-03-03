@@ -1,31 +1,35 @@
 {
-  "author": "",
-  "name": "bem-mvc",
-  "version": "2.0.0",
+  "name": "bem-core-models",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bem/bem-mvc.git"
+    "url": "git://github.com/birhoff/bem-core-models.git"
   },
-  "bugs": "https://github.com/bem/bem-mvc/issues",
+  "bugs": "https://github.com/birhoff/bem-core-models/issues",
   "private": true,
   "engines": {
     "node": ">=0.10"
   },
   "dependencies": {
-    "bem-environ": "~1.4.0"
+    "bem-environ": "^1.4.0"
   },
   "devDependencies": {
-    "bower-npm-install": "~0.5.4",
+    "bem-naming": "^0.5.1",
+    "bower-npm-install": "^0.5.10",
     "enb": "^1.1.2",
-    "enb-bem-docs": "^0.11.0",
+    "enb-bem-specs": "^0.8.0",
+    "enb-bem-techs": "^2.2.1",
     "enb-bemxjst": "^5.0.0",
-    "enb-js": "^1.1.0",
+    "enb-borschik": "^2.3.0",
     "enb-magic-factory": "^0.5.0",
+    "enb-magic-platform": "^0.6.0",
     "enb-modules": "^0.2.0",
-    "enb-stylus": "^2.2.0"
+    "enb-stylus": "^2.2.0",
+    "ym": "^0.1.2"
   },
   "scripts": {
-    "deps": "bower-npm-install --non-interactive",
-    "build": "enb make docs -n && enb make"
+    "test": "magic run specs",
+    "postinstall": "npm run deps",
+    "deps": "bower i --allow-root"
   }
 }
