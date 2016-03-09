@@ -1,4 +1,4 @@
-modules.define('model', ['inherit', 'objects', 'lodash'], function(provide, inherit, objects, _, Model) {
+modules.define('model', ['inherit', 'objects'], function(provide, inherit, objects, Model) {
 
     /**
      * @namespace Model.Field.Type.Array
