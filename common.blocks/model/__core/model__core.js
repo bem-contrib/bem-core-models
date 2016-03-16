@@ -629,7 +629,7 @@ modules.define('model',
              */
             checkModelDecl: function(decl, fields, protoProps) {
                 protoProps && objects.each(protoProps, function(prop, name) {
-                    if (name in Model.prototype) throw new Error('method "' + name + '" is protected');
+                    if (name in Model.prototype && name !== 'toJSON') throw new Error('method "' + name + '" is protected');
                 });
             },
 
