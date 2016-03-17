@@ -42,20 +42,6 @@ modules.define('model',
                 this._path = Model.buildPath(modelParams);
                 this.changed = [];
 
-                /**
-                 * Генерирует событие change на модели
-                 * @type {*}
-                 */
-                this.fireChange = this._fireChange.bind(this);
-
-                /**
-                 * Debounce триггер на модели
-                 * @type {*}
-                 */
-                this.debounceTrigger = debounce(function(name, data) {
-                    this.emit(name, data);
-                }, this.changesTimeout, false, this);
-
                 this._initFields(data || {});
 
                 return this;
@@ -412,7 +398,7 @@ modules.define('model',
              * @param {*} [data] данные доступные в обработчике события
              * @returns {Model}
              */
-            trigger: function(field, e, data) {
+            emit: function(field, e, data) {
                 if (!(typeof field == 'string' && typeof e == 'string')) {
                     data = e;
                     e = field;
@@ -438,7 +424,7 @@ modules.define('model',
             _onFieldChange: function(name, opts) {
                 if (this.changed.indexOf(name) == -1) this.changed.push(name);
                 this.fieldsDecl[name].calculate || this._calcDependsTo(name, opts);
-                this.fireChange(opts);
+                this.emitChange(opts);
 
                 return this;
             },
@@ -446,9 +432,8 @@ modules.define('model',
             /**
              * Сгенерировать событие change на модели
              * @param {Object} opts
-             * @private
              */
-            _fireChange: function(opts) {
+            emitChange: function(opts) {
                 this.emit('change', objects.extend({}, opts, { changedFields: this.changed }));
                 this.changed = [];
             },
@@ -565,19 +550,20 @@ modules.define('model',
              * Декларирует описание модели
              * поле fields описывается следущим видом:
              * {
-         *     field1: 'string',
-         *     field2: {
-         *         {String} [type] тип поля
-         *         {Boolean} [internal] внутреннее поле
-         *         {*|Function} [default] дефолтное значение
-         *         {*|Function} [value] начанольное значение
-         *         {Object|Function} [validation] ф-ия конструктор объекта валидации или он сам
-         *         {Function} [format] ф-ия форматирования
-         *         {Function} [preprocess] ф-ия вызываемая до записи значения
-         *         {Function} [calculate] ф-ия вычисления значения, вызывается, если изменилось одно из связанных полей
-         *         {String|Array} [dependsFrom] массив от которых зависит значение поля
-         *     }
-         * }
+             *     field1: 'string',
+             *     field2: {
+             *         {String} [type] тип поля
+             *         {Boolean} [internal] внутреннее поле
+             *         {*|Function} [default] дефолтное значение
+             *         {*|Function} [value] начанольное значение
+             *         {Object|Function} [validation] ф-ия конструктор объекта валидации или он сам
+             *         {Function} [format] ф-ия форматирования
+             *         {Function} [preprocess] ф-ия вызываемая до записи значения
+             *         {Function} [calculate] ф-ия вычисления значения, вызывается, если изменилось одно из связанных
+             * полей
+             *         {String|Array} [dependsFrom] массив от которых зависит значение поля
+             *     }
+             * }
              *
              * @static
              * @public
@@ -922,7 +908,7 @@ modules.define('model',
              * @param {Object} [data] данные передаваемые в обработчик события
              * @returns {Model}
              */
-            trigger: function(modelParams, field, e, data) {
+            emit: function(modelParams, field, e, data) {
                 if (!(typeof field == 'string' && typeof e == 'string')) {
                     data = e;
                     e = field;
