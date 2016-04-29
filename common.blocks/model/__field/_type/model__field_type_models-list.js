@@ -25,7 +25,7 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
          * @returns {Model.Field}
          * @private
          */
-        _trigger: function(event, opts) {
+        _emit: function(event, opts) {
             var innerField = opts && opts.field;
 
             return this.__base(event, objects.extend({ innerField: innerField }, opts));
@@ -58,7 +58,6 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
                      * @private
                      */
                     _createModel: function(data, opts) {
-                        //noinspection JSUnusedAssignment
                         isAdding = true; // устанавливаем флаг для обработчика на событие create
 
                         var model = data instanceof Model ?
@@ -73,7 +72,7 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
 
                         model
                             .on('change', function(e, data) {
-                                field._trigger(
+                                field._emit(
                                     'change',
                                     objects.extend({
                                         // @deprecated use model instead
@@ -107,8 +106,8 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
                         currentField._bindFieldEventHandlers(model);
 
                         field
-                            .trigger('add', objects.extend({}, opts, { model: model, index: index }))
-                            ._trigger('change', opts);
+                            .emit('add', objects.extend({}, opts, { model: model, index: index }))
+                            ._emit('change', opts);
 
                         return model;
                     },
@@ -129,8 +128,8 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
                         field._raw.splice(index, 0, model);
 
                         field
-                            .trigger('add', objects.extend({}, opts, { model: model, index: index }))
-                            ._trigger('change', opts);
+                            .emit('add', objects.extend({}, opts, { model: model, index: index }))
+                            ._emit('change', opts);
 
                         return model;
                     },
@@ -152,11 +151,11 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
 
                             currentField._unBindFieldEventHandlers(model);
 
-                            field.trigger('remove', objects.extend({}, opts, { model: model, index: index }));
+                            field.emit('remove', objects.extend({}, opts, { model: model, index: index }));
 
                             opts.keepModel !== true && model.destruct();
 
-                            field._trigger('change', opts);
+                            field._emit('change', opts);
                         }
                     },
 
@@ -172,7 +171,7 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
                         });
 
                         if (!opts || !opts.silent) {
-                            field._trigger('change', opts);
+                            field._emit('change', opts);
                         }
                     },
 
@@ -335,7 +334,7 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
                 return this._value.add(itemData);
             }, this);
 
-            this._trigger(opts && opts.isInit ? 'init' : 'change', opts);
+            this._emit(opts && opts.isInit ? 'init' : 'change', opts);
 
             return this;
         },

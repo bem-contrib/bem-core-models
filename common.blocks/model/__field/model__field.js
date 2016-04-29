@@ -2,6 +2,7 @@ modules.define(
     'model',
     ['inherit', 'events', 'objects', 'functions'],
     function(provide, inherit, events, objects, functions, Model) {
+
         /**
          * @namespace
          * @name Model.Field
