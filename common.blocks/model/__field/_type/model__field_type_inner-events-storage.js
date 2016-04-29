@@ -24,7 +24,6 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
          * @param {String} e
          * @param {Function} fn
          * @param {Object} ctx
-         * @private
          */
         _pushEventHandler: function(e, fn, ctx) {
             if (!this._eventHandlers[e])
@@ -42,7 +41,6 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
          * @param {String} e
          * @param {Function} fn
          * @param {Object} ctx
-         * @private
          */
         _popEventHandler: function(e, fn, ctx) {
             if (!this._eventHandlers[e]) return;
@@ -59,7 +57,6 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
         /**
          * Повесить обработчики событий из хранилища на модель
          * @param {Model} model
-         * @private
          */
         _bindFieldEventHandlers: function(model) {
             objects.each(this._eventHandlers, function(events, e) {
@@ -72,7 +69,6 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
         /**
          * Снять обработчики событий из хранилища с модели
          * @param {Model} model
-         * @private
          */
         _unBindFieldEventHandlers: function(model) {
             objects.each(this._eventHandlers, function(events, e) {
