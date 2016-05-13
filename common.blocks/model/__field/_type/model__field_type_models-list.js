@@ -295,7 +295,7 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
         isEqual: function(val) {
             if (!val) return false;
 
-            var isModelList = val instanceof Model.Field.types['models-list'],
+            var isModelList = val instanceof Model.Field.Type['models-list'],
                 length;
 
             isModelList && (val = val.get());
