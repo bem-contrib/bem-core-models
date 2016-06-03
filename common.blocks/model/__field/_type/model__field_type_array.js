@@ -72,8 +72,6 @@ modules.define('model', ['inherit', 'objects'], function(provide, inherit, objec
                             .emit('remove', { data: res });
                     }
 
-                    _this._emit('change');
-
                     return res;
                 }
             });
