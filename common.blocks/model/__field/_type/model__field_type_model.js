@@ -1,4 +1,4 @@
-modules.define('model', ['inherit'], function(provide, inherit, Model) {
+modules.define('model', ['inherit', 'objects'], function(provide, inherit, objects, Model) {
 
     /**
      * @namespace Model.Field.Type.Model
@@ -135,7 +135,7 @@ modules.define('model', ['inherit'], function(provide, inherit, Model) {
         _getValidationRules: function() {
             var field = this;
 
-            return $.extend(this._commonRules(), {
+            return objects.extend(this._commonRules(), {
                 /**
                  * валидация вложенной модели
                  */
