@@ -29,7 +29,6 @@
   },
   "scripts": {
     "test": "magic run specs",
-    "postinstall": "npm run deps",
     "deps": "bower i --allow-root"
   }
 }
