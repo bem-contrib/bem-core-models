@@ -28,8 +28,7 @@
     "ym": "^0.1.2"
   },
   "scripts": {
-    "test": "magic run specs",
-    "postinstall": "npm run deps",
+    "test": "npm run deps && magic run specs",
     "deps": "bower i --allow-root"
   }
 }
