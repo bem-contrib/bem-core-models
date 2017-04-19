@@ -1,6 +1,6 @@
-modules.require(['i-bem__dom', 'model'], function(BEMDOM, Model) {
+modules.define('model', ['i-bem-dom'], function(provide, bemDom) {
 
-BEMDOM.decl('model', {
+var Model = bemDom.declBlock(this.name, {
 
     onSetMod: {
         js: {
@@ -24,4 +24,5 @@ BEMDOM.decl('model', {
 
 });
 
+    provide(Model);
 });
