@@ -278,7 +278,17 @@ module.exports = function(config) {
                 levels : getLibLevels(platform),
                 sourceLevels : getSpecLevels(platform),
                 jsSuffixes : ['vanilla.js', 'browser.js', 'js'],
-                depsTech : techs.bem.depsOld
+                depsTech : techs.bem.depsOld,
+                scripts: ['https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js'],
+                templateEngine: {
+                    templateTech: require('enb-bemxjst/techs/bemhtml'),
+                    templateOptions: {
+                        sourceSuffixes: ['bemhtml', 'bemhtml.js'],
+                        engineOptions: { elemJsInstances: true }
+                    },
+                    htmlTech: require('enb-bemxjst/techs/bemjson-to-html'),
+                    htmlTechOptionNames: { bemjsonFile: 'bemjsonFile', templateFile: 'bemhtmlFile' }
+                }
             });
 
             configureNodes(platform, [platform + '.tests/*/*', platform + '.examples/*/*']);

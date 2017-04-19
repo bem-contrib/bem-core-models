@@ -1,27 +1,28 @@
-modules.require(['i-bem__dom', 'model'], function(BEMDOM, Model) {
+modules.define('bem-model', ['i-bem-dom', 'model'], function(provide, bemDom, Model) {
 
-BEMDOM.decl('model', {
+    var BemModel = bemDom.declBlock(this.name, {
 
-    onSetMod: {
-        js: {
-            inited: function() {
-                var data = Model.modelsData,
-                    modelsParams = this.params.data,
-                    storeData = function storeData(modelParams) {
-                        var modelData = data[modelParams.name] || (data[modelParams.name] = {});
+        onSetMod: {
+            js: {
+                inited: function() {
+                    var data = Model.modelsData,
+                        modelsParams = this.params.data,
+                        storeData = function storeData(modelParams) {
+                            var modelData = data[modelParams.name] || (data[modelParams.name] = {});
 
-                        modelData[Model.buildPath(modelParams)] = modelParams.data;
-                    };
+                            modelData[Model.buildPath(modelParams)] = modelParams.data;
+                        };
 
-                if (Array.isArray(modelsParams)) {
-                    modelsParams.forEach(storeData);
-                } else {
-                    storeData(modelsParams);
+                    if (Array.isArray(modelsParams)) {
+                        modelsParams.forEach(storeData);
+                    } else {
+                        storeData(modelsParams);
+                    }
                 }
             }
         }
-    }
 
-});
+    });
 
+    provide(BemModel);
 });
