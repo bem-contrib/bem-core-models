@@ -15,7 +15,7 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "bem-components": "^2.4.0",
-    "bem-pr": "^0.12.0"
+    "bem-components": "^5.1.0",
+    "bem-pr": "^0.14.0"
   }
 }
