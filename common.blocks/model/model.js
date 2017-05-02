@@ -1,6 +1,6 @@
 modules.define('bem-model', ['i-bem-dom', 'model'], function(provide, bemDom, Model) {
 
-    var BemModel = bemDom.declBlock(this.name, {
+    var BemModel = bemDom.declBlock('model', {
 
         onSetMod: {
             js: {

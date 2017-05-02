@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "bem-naming": "^0.5.1",
+    "bower": "^1.8.0",
     "bower-npm-install": "^0.5.10",
     "enb": "^1.1.2",
     "enb-bem-specs": "^0.11.0",
