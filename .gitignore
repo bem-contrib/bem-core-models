@@ -8,3 +8,4 @@ node_modules
 .svn
 .enb/tmp
 desktop.sets
+common.tmpl-specs

@@ -32,6 +32,33 @@ module.exports = function(config) {
         specs : config.module('enb-bem-specs').createConfigurator('specs')
     });
 
+    config.includeConfig('enb-bem-tmpl-specs');
+
+    var tmplSpecsConfigurator = config
+        .module('enb-bem-tmpl-specs')
+        .createConfigurator('tmpl-specs');
+
+    tmplSpecsConfigurator.configure({
+        destPath : 'common.tmpl-specs',
+        levels : ['common.blocks'],
+        sourceLevels : [
+            'common.blocks',
+            { path: './libs/bem-core/common.blocks', check: false },
+            { path: './libs/bem-components/common.blocks', check: false }
+        ],
+        engines : {
+            bemhtml : {
+                tech : 'enb-bemxjst/techs/bemhtml',
+                options : {
+                    sourceSuffixes : ['bemhtml.js'],
+                    engineOptions : {
+                        xhtml : true
+                    }
+                }
+            }
+        }
+    });
+
     function configureDist(platforms) {
         var pathToDist = path.resolve('dist'),
             pathToBorschikConf = path.join(pathToDist, '.borschik');
