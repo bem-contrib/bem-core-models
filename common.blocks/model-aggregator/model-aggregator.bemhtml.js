@@ -1,13 +1,12 @@
-block('model-aggregator').def()(function() {
-    this._modelAggregation = true;
+// the block replaces all the inner `i-model` blocks
+// with the new one with all the collected `modelsParams`
+block('i-model-aggregator').replace()(function() {
     this._modelAggregatorData = [];
 
-    applyCtx(this.ctx.content);
+    applyNext({ _modelAggregation: true });
 
-    this._modelAggregation = false;
-
-    return applyCtx({
-        block: 'model',
+    return {
+        block: 'i-model',
         modelsParams: this._modelAggregatorData
-    });
+    };
 });
