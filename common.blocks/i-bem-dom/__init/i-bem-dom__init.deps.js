@@ -1,0 +1,6 @@
+({
+    shouldDeps: [
+        'jquery',
+        'model'
+    ]
+});

@@ -32,6 +32,33 @@ module.exports = function(config) {
         specs : config.module('enb-bem-specs').createConfigurator('specs')
     });
 
+    config.includeConfig('enb-bem-tmpl-specs');
+
+    var tmplSpecsConfigurator = config
+        .module('enb-bem-tmpl-specs')
+        .createConfigurator('tmpl-specs');
+
+    tmplSpecsConfigurator.configure({
+        destPath : 'common.tmpl-specs',
+        levels : ['common.blocks'],
+        sourceLevels : [
+            'common.blocks',
+            { path: './libs/bem-core/common.blocks', check: false },
+            { path: './libs/bem-components/common.blocks', check: false }
+        ],
+        engines : {
+            bemhtml : {
+                tech : 'enb-bemxjst/techs/bemhtml',
+                options : {
+                    sourceSuffixes : ['bemhtml.js'],
+                    engineOptions : {
+                        xhtml : true
+                    }
+                }
+            }
+        }
+    });
+
     function configureDist(platforms) {
         var pathToDist = path.resolve('dist'),
             pathToBorschikConf = path.join(pathToDist, '.borschik');
@@ -278,7 +305,17 @@ module.exports = function(config) {
                 levels : getLibLevels(platform),
                 sourceLevels : getSpecLevels(platform),
                 jsSuffixes : ['vanilla.js', 'browser.js', 'js'],
-                depsTech : techs.bem.depsOld
+                depsTech : techs.bem.depsOld,
+                scripts: ['https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js'],
+                templateEngine: {
+                    templateTech: require('enb-bemxjst/techs/bemhtml'),
+                    templateOptions: {
+                        sourceSuffixes: ['bemhtml', 'bemhtml.js'],
+                        engineOptions: { elemJsInstances: true }
+                    },
+                    htmlTech: require('enb-bemxjst/techs/bemjson-to-html'),
+                    htmlTechOptionNames: { bemjsonFile: 'bemjsonFile', templateFile: 'bemhtmlFile' }
+                }
             });
 
             configureNodes(platform, [platform + '.tests/*/*', platform + '.examples/*/*']);
