@@ -6,7 +6,6 @@
     "url": "git://github.com/birhoff/bem-core-models.git"
   },
   "bugs": "https://github.com/birhoff/bem-core-models/issues",
-  "private": true,
   "engines": {
     "node": ">=0.10"
   },
